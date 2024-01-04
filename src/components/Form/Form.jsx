@@ -1,62 +1,58 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 import styles from '../Form/Form.module.css';
 
-class Form extends Component {
-    state = {
-        name: '',
-        number: '',
-    };
+const Form = ({ onSubmit }) => {
+    const [name, setName] = useState('')
+    const [number, setNumber] = useState('')
 
-    handleChange = event => {
+    const handleChange = event => {
         const { name, value } = event.target;
-        this.setState({ [name]: value });
+        if (name === 'name') {
+            setName(value);
+        } else if (name === 'number') {
+            setNumber(value);
+        }
     };
 
-    handleSubmit = event => {
+    const handleSubmit = event => {
         event.preventDefault();
-        const { name, number } = this.state;
-        this.props.onSubmit(name, number);
-        this.setState({ name: '', number: '' });
+        onSubmit(name, number);
+        setName('')
+        setNumber('')
     };
 
-    render() {
-        const { name, number } = this.state;
-
-        return (
-            <form
-                className={styles.form}
-                onSubmit={this.handleSubmit}>
-                <ul className={styles.list}>
-                    <li className={styles.item}>
-                        <label>Name</label>
-                        <input
-                            type="text"
-                            name="name"
-                            className={styles.formInput}
-                            placeholder='Enter name'
-                            value={name}
-                            onChange={this.handleChange}
-                            required />
-                    </li>
-
-                    <li className={styles.item}>
-                        <label>Number</label>
-                        <input
-                            type="tel"
-                            name="number"
-                            className={styles.formInput}
-                            placeholder='Enter phone number'
-                            value={number}
-                            onChange={this.handleChange}
-                            required/>
-                    </li>
-                    <li>
-                        <button type="submit">Add Contact</button>
-                    </li>
-                </ul>
-            </form>
-        )
-    }
+    return (
+        <form className={styles.form} onSubmit={handleSubmit}>
+            <ul className={styles.list}>
+                <li className={styles.item}>
+                    <label>Name</label>
+                    <input
+                        type="text"
+                        className={styles.formInput}
+                        name='name'
+                        placeholder='Enter name'
+                        value={name}
+                        onChange={handleChange}
+                        required />
+                </li>
+                <li className={styles.item}>
+                    <label>Number</label>
+                    <input
+                        type="tel"
+                        className={styles.formInput}
+                        name='number'
+                        placeholder='Enter phone number'
+                        value={number}
+                        onChange={handleChange}
+                        required
+                    />
+                </li>
+                <li>
+                    <button type='submit'>Add Contact</button>
+                </li>
+            </ul>
+        </form>
+    )
 }
 
 export default Form;
