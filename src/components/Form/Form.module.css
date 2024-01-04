@@ -1,0 +1,31 @@
+.form {
+    border: 1px solid grey;
+    height: 100%;
+    width: 30%;
+    margin-left: 30px;
+    padding: 20px;
+}
+
+.list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+
+.input {
+    width: fit-content;
+}
+
+.formInput{
+    width: fit-content;
+}

@@ -1,0 +1,15 @@
+.item {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+    position: relative;
+    padding-left: 20px;
+}
+
+.btn {
+    height: fit-content;
+    width: fit-content;
+    border-radius: 8%;
+    cursor: pointer;
+}
